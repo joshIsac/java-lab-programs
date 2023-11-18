@@ -1,10 +1,10 @@
 import java.util.Scanner;
 public class Maxfrequency 
 {
- private static int[] num;
+ private static int num[];
 
     // Static method to identify top K numbers with highest occurrences
-    private static void findMaxfrequency(int k) {
+    private static void findMaxfrequency(int K) {
         int freq[] = new int[num.length];
         // Calculate frequencies of each number in the array
         for (int i = 0; i < num.length; i++) {
@@ -16,7 +16,7 @@ public class Maxfrequency
         }
 
         // Identify top K numbers with the highest occurrences
-        for (k = 0; k < k; k++) {
+        for (int k = 0; k < K; k++) {
             int maxFrequency = -1;
             int maxIndex = -1;
 
