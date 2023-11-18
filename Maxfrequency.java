@@ -1,66 +1,66 @@
 import java.util.Scanner;
 public class Maxfrequency 
 {
-    private static int num[];
-    public Maxfrequency() {
-        num=new int[15];
-    }
-    public void readNum() 
-    {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter any numbers:");
-        for (int i = 0; i < 15; i++) {
-            System.out.print("num" + (i + 1) + ": ");
-            num[i] = in.nextInt();
-            
-        }
-    }
-        public int getMode() 
-        { 
-            int mode = num[0];
-            int maxFrequency =1;
-    
-            for (int i = 0; i < 15; i++) {
-                int currentMark = num[i];
-                int currentFrequency = 1;
-    
-                for (int j = i + 1; j < 15; j++) {
-                    if (num[j] == currentMark) {
-                        currentFrequency++;
-                    }
-                }
-    
-                if (currentFrequency > maxFrequency || (currentFrequency == maxFrequency && currentMark > mode)) {
-                    mode = currentMark;
-                    maxFrequency = currentFrequency;
-                }
-            }
-    
-            return mode;
-        }
-        public int getFreqAtMode() {
-                    int mode = getMode();
-                    int modeFrequency = 0;
-            
-                    for (int i = 0; i < 10; i++) {
-                        if (num[i] == mode) {
-                            modeFrequency++;
-                        }
-                        }    return modeFrequency;
-                    }
-                        public void display() 
-                        {
-                            System.out.println("The number with the highest frequency is " + getMode());
-                            System.out.println("frequency of number" + getFreqAtMode());
-                        }                   
+ private static int[] num;
 
-            public static void main(String[] args)
-            {
-                Maxfrequency maxfrequency = new Maxfrequency();
-                maxfrequency.readNum();
-                maxfrequency.display();              
+    // Static method to identify top K numbers with highest occurrences
+    private static void findMaxfrequency(int k) {
+        int freq[] = new int[num.length];
+        // Calculate frequencies of each number in the array
+        for (int i = 0; i < num.length; i++) {
+            for (int j = i + 1; j < num.length; j++) {
+                if (num[i] == num[j]) {
+                    freq[i]++;
+                }
             }
         }
+
+        // Identify top K numbers with the highest occurrences
+        for (k = 0; k < k; k++) {
+            int maxFrequency = -1;
+            int maxIndex = -1;
+
+            // Find the number with the highest frequency
+            for (int i = 0; i < freq.length; i++) {
+                if (freq[i] > maxFrequency) {
+                    maxFrequency = freq[i];
+                    maxIndex = i;
+                }
+            }
+
+            // Print the number with the highest frequency
+            System.out.print(num[maxIndex] + " ");
+
+            // Set the frequency of the chosen number to -1 to avoid re-selection
+            freq[maxIndex] = -1;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get the size of the array
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+        num = new int[size];
+
+        // Get the elements of the array
+        System.out.print("Enter the elements of the array separated by spaces: ");
+        for (int i = 0; i < size; i++) {
+            num[i] = scanner.nextInt();
+        }
+
+        // Get the value of K
+        System.out.print("Enter the value of K: ");
+        int K = scanner.nextInt();
+
+        // Find and print the top K numbers with highest occurrences
+        findMaxfrequency(K);
+
+        scanner.close();
+    }
+}
+
     
 
 
