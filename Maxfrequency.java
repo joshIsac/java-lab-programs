@@ -37,33 +37,27 @@ public class Maxfrequency
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner in  = new Scanner(System.in);
 
         // Get the size of the array
         System.out.print("Enter the size of the array: ");
-        int size = scanner.nextInt();
+        int size = in.nextInt();
         num = new int[size];
 
         // Get the elements of the array
         System.out.print("Enter the elements of the array separated by spaces: ");
         for (int i = 0; i < size; i++) {
-            num[i] = scanner.nextInt();
+            num[i] = in.nextInt();
         }
 
         // Get the value of K
         System.out.print("Enter the value of K: ");
-        int K = scanner.nextInt();
+        int k = in.nextInt();
 
         // Find and print the top K numbers with highest occurrences
-        findMaxfrequency(K);
+        findMaxfrequency(k);
+        in.close();
 
-        scanner.close();
+        
     }
 }
-
-    
-
-
-
-
-
