@@ -45,19 +45,31 @@ public class Maxfrequency
         num = new int[size];
 
         // Get the elements of the array
-        System.out.print("Enter the elements of the array separated by spaces: ");
+        System.out.println("Enter the elements of the array separated by spaces: ");
         for (int i = 0; i < size; i++) {
             num[i] = in.nextInt();
         }
-
+        if (in.hasNext())
+        {
+        System.out.println("Invalid input: Too many elements provided.");
+           
+        in.close ();
+        return ;} 
+        
         // Get the value of K
-        System.out.print("Enter the value of K: ");
+        System.out.println("Enter the value of K: ");
         int k = in.nextInt();
+
+        if (k>size || k<=0){
+        System.out.println("k should be between 1 and "+size );}
+         else
+        {
+            findMaxfrequency(k);
+        }
+    
 
         // Find and print the top K numbers with highest occurrences
         findMaxfrequency(k);
-        in.close();
-
-        
+        in.close();   
     }
 }
