@@ -1,11 +1,13 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
-public class Maxfrequency 
-{
- private static int num[];
+
+public class Maxfrequency {
+    private static int num[];
 
     // Static method to identify top K numbers with highest occurrences
-    private static void findMaxfrequency(int K) {
+    private static void findMaxFrequency(int K) {
         int freq[] = new int[num.length];
+
         // Calculate frequencies of each number in the array
         for (int i = 0; i < num.length; i++) {
             for (int j = i + 1; j < num.length; j++) {
@@ -37,39 +39,57 @@ public class Maxfrequency
     }
 
     public static void main(String[] args) {
-        Scanner in  = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
         // Get the size of the array
-        System.out.print("Enter the size of the array: ");
-        int size = in.nextInt();
+        int size = 0;
+        while (size <= 0) {
+            try {
+                System.out.print("Enter the size of the array: ");
+                size = in.nextInt();
+
+                if (size <= 0) {
+                    System.out.println("Invalid array size. Please enter a positive integer.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                in.nextLine(); // Consume the invalid input
+            }
+        }
+
         num = new int[size];
 
         // Get the elements of the array
-        System.out.println("Enter the elements of the array separated by spaces: ");
+        System.out.println("Enter " + size + " elements of the array separated by spaces: ");
         for (int i = 0; i < size; i++) {
-            num[i] = in.nextInt();
+            try {
+                num[i] = in.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                in.nextLine(); // Consume the invalid input
+                i--; // Repeat the current iteration to re-enter the element
+            }
         }
-        if (in.hasNext())
-        {
-        System.out.println("Invalid input: Too many elements provided.");
-           
-        in.close ();
-        return ;} 
-        
-        // Get the value of K
-        System.out.println("Enter the value of K: ");
-        int k = in.nextInt();
 
-        if (k>size || k<=0){
-        System.out.println("k should be between 1 and "+size );}
-         else
-        {
-            findMaxfrequency(k);
+        // Get the value of K
+        int k = 0;
+        while (k <= 0 || k > size) {
+            try {
+                System.out.print("Enter the value of K (1 to " + size + "): ");
+                k = in.nextInt();
+
+                if (k <= 0 || k > size) {
+                    System.out.println("Invalid value of K. K should be between 1 and " + size);
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                in.nextLine(); // Consume the invalid input
+            }
         }
-    
 
         // Find and print the top K numbers with highest occurrences
-        findMaxfrequency(k);
-        in.close();   
+        findMaxFrequency(k);
+
+        in.close();
     }
 }
