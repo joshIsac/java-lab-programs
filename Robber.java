@@ -164,7 +164,7 @@ public class Main {
             }
         }
         int maxAmountMultiTypeBuilding = javaRobber.MultiHouseBuilding(moneyInMultiTypeBuilding);
-       System.out.println("Max amount robbed from square houses: " + maxAmountMultiTypeBuilding);
+       System.out.println("Max amount robbed from multiple houses: " + maxAmountMultiTypeBuilding);
         scanner.close();
     }
 }
