@@ -1,7 +1,7 @@
 /**
  * BankInterface
  */
-public interface BankInterface
+public interface BankInterface 
  {
     void deposit(int amount);
     abstract double getBalance();
@@ -10,6 +10,7 @@ public interface BankInterface
 public class BankA implements BankInterface 
 {
     private double balance;
+    
     @Override
     public void deposit(int amount) 
     {
@@ -18,7 +19,7 @@ public class BankA implements BankInterface
     @Override
     public double getBalance()
      {
-        return balance;
+        return balance*getInterestRates()+balance; //
      }
      @Override
      public double getInterestRates() {
@@ -36,7 +37,7 @@ public class BankA implements BankInterface
  
      @Override
      public double getBalance() {
-         return balance;
+         return balance*getInterestRates()+balance; ///
      }
  
      @Override
@@ -56,7 +57,7 @@ public class BankA implements BankInterface
  
      @Override
      public double getBalance() {
-         return balance;
+         return balance*getInterestRates()+balance; ///
      }
  
      @Override
@@ -64,26 +65,32 @@ public class BankA implements BankInterface
          return 0.079;
      }
  }
+ }
  
  // Main class
- public class Main
-  {
-     public static void main(String[] args) {
-         BankInterface bankA = new BankA();
-         BankInterface bankB = new BankB();
-         BankInterface bankC = new BankC();
-         ((BankA) bankA).deposit(10000);
-         ((BankB) bankB).deposit(150000);
-         ((BankC) bankC).deposit(200000);
- 
-         System.out.println("Bank A balance: " + bankA.getBalance());
-         System.out.println("Bank A interest rate: " + bankA.getInterestRates() * 100 + "%");
- 
-         System.out.println("Bank B balance: " + bankB.getBalance());
-         System.out.println("Bank B interest rate: " + bankB.getInterestRates() * 100 + "%");
- 
-         System.out.println("Bank C balance: " + bankC.getBalance());
-         System.out.println("Bank C interest rate: " + bankC.getInterestRates() * 100 + "%");
-     }
- }
+public class Main1 {
+    public static void main(String[] args) {
+         BankInterface.BankA bank1 = new BankInterface.BankA();
+         BankInterface.BankB bank2 = new  BankInterface.BankB();
+         BankInterface.BankC bank3 = new  BankInterface.BankC();
+
+        bank1.deposit(10000);
+        System.out.println("\nAfter Depositing 10,000:");
+        System.out.println("Account Balance in Bank A: " + bank1.getBalance());
+        System.out.println("Interest Rate for Bank A : " + bank1.getInterestRates());
+
+        // Bank B
+        
+        bank2.deposit(150000);
+        System.out.println("\nAfter Depositing 150,000:");
+        System.out.println("Account Balance in Bank B : " + bank2.getBalance());
+        System.out.println("Interest Rate for Bank B : " + bank2.getInterestRates());
+
+        // Bank C
+
+        bank3.deposit(200000);
+        System.out.println("\nAfter Depositing 200,000:");
+        System.out.println("Account Balance in Bank C: " + bank3.getBalance());
+        System.out.println("Interest Rate for Bank C : " + bank3.getInterestRates());
+    }
 }
