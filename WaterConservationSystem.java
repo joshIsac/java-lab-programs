@@ -41,3 +41,11 @@ class CityBlockConservation extends RainySeasonConservation {
         return trappedWater;
     }
 }
+public class Main2 {
+    public static void main(String[] args) {
+        WaterConservationSystem conservationSystem = new CityBlockConservation();
+        int[] blockHeights = {4,0,1,0,2};
+        int trappedWater = conservationSystem.calculateTrappedWater(blockHeights);
+        System.out.println("Total trapped water: " + trappedWater + " units");
+    }
+}
