@@ -404,6 +404,7 @@ public class AttendeeInformation extends javax.swing.JFrame {
             pat.setString(2, email);
             pat.setString(3, contactnumber);
             pat.setString(4, country);
+            pat.setInt(5, id);
             pat.executeUpdate();
             JOptionPane.showMessageDialog(this, "Records Updated");
             Load();
